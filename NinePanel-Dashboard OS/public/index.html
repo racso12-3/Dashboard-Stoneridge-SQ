@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Stoneridge · Supplier Quality Dashboard</title>
+  <link rel="icon" type="image/svg+xml" href="assets/stoneridge-mark.svg">
+  <link rel="alternate icon" type="image/png" href="assets/stoneridge-logo-trim.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <a class="marca" href="/" title="Supplier Quality Dashboard">
+      <img class="logo-img" src="assets/stoneridge-logo.svg" alt="Stoneridge" width="50" height="22">
+      <div class="titulo">
+        <h1>Supplier Quality Dashboard</h1>
+        <p>Nine-Panel KPI · Control de Calidad de Proveedores</p>
+      </div>
+    </a>
+    <div class="acciones">
+      <span class="pill pill-kpi" id="pill-ppm" title="Overall PPM">— PPM</span>
+      <span class="pill pill-demo" title="Prototipo con datos demo">DEMO</span>
+      <span class="hora" id="hora"></span>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar" aria-label="Funcionalidades del dashboard" tabindex="0">
+      <div class="sidebar-tab" aria-hidden="true" title="Menú de funcionalidades">☰</div>
+      <div class="sidebar-contenido">
+        <section class="side-bloque">
+          <h2 class="side-titulo">Rango</h2>
+          <p class="side-desc">Periodo de series temporales</p>
+          <div class="rango rango-vertical" role="group" aria-label="Rango de periodo">
+            <button type="button" data-accion="rango" data-rango="6" aria-pressed="false" title="Últimos 6 meses">6M</button>
+            <button type="button" data-accion="rango" data-rango="12" aria-pressed="true" title="Últimos 12 meses">12M</button>
+            <button type="button" data-accion="rango" data-rango="quarter" aria-pressed="false" title="12 meses segmentados por trimestre (Q1–Q4)">Quarter</button>
+          </div>
+        </section>
+
+        <section class="side-bloque">
+          <h2 class="side-titulo">Interacción</h2>
+          <ul class="side-lista">
+            <li><strong>Tooltip:</strong> pasa el mouse o enfoca un dato.</li>
+            <li><strong>Detalle dato:</strong> clic o Enter/Espacio en un elemento.</li>
+            <li><strong>Ventana flotante:</strong> clic en un área vacía del panel.</li>
+            <li><strong>Detalle panel:</strong> botón <span class="side-chip">⤢ Detalle</span> o desde la lista de paneles.</li>
+            <li><strong>Cerrar:</strong> Esc, clic fuera o ✕.</li>
+          </ul>
+        </section>
+
+        <section class="side-bloque side-paneles">
+          <h2 class="side-titulo">9 Paneles</h2>
+          <ol class="side-nav">
+            <li><button type="button" class="side-nav-btn" data-accion="panel" data-panel="1" title="Ver detalle: Top Focus Suppliers">Focus Suppliers</button></li>
+            <li><button type="button" class="side-nav-btn" data-accion="panel" data-panel="2" title="Ver detalle: Supplier Claims">Claims</button></li>
+            <li><button type="button" class="side-nav-btn" data-accion="panel" data-panel="3" title="Ver detalle: Supplier Scorecard">Scorecard</button></li>
+            <li><button type="button" class="side-nav-btn" data-accion="panel" data-panel="4" title="Ver detalle: On-time Delivery">OTD</button></li>
+            <li><button type="button" class="side-nav-btn" data-accion="panel" data-panel="5" title="Ver detalle: COPQ Containment">COPQ</button></li>
+            <li><button type="button" class="side-nav-btn" data-accion="panel" data-panel="6" title="Ver detalle: Chargeback Recovery">Chargeback</button></li>
+            <li><button type="button" class="side-nav-btn" data-accion="panel" data-panel="7" title="Ver detalle: PPAP Requalification">PPAP</button></li>
+            <li><button type="button" class="side-nav-btn" data-accion="panel" data-panel="8" title="Ver detalle: Project Readiness">Readiness</button></li>
+            <li><button type="button" class="side-nav-btn" data-accion="panel" data-panel="9" title="Ver detalle: Supplier Audits">Auditorías</button></li>
+          </ol>
+        </section>
+
+        <div class="side-bloque side-ayuda-final">
+          <a class="btn-ayuda btn-ayuda-final" href="ayuda.html" title="Ver explicación del dashboard y de cada panel">Ayuda y mediciones</a>
+        </div>
+      </div>
+    </aside>
+
+    <div class="contenido">
+
+  <main class="grid9">
+
+    <section class="panel" id="p1">
+      <h2><span class="num">1</span>Top Focus Suppliers <small>Top 3 EU · Top 3 NA</small></h2>
+      <div class="cuerpo" id="c1"></div>
+    </section>
+
+    <section class="panel" id="p2">
+      <h2><span class="num">2</span>Supplier Claims <small>L1/L2/L3 · mes actual · Pillar 1</small></h2>
+      <div class="cuerpo" id="c2"></div>
+    </section>
+
+    <section class="panel" id="p3">
+      <h2><span class="num">3</span>Supplier Scorecard <small>overview by rating</small></h2>
+      <div class="cuerpo" id="c3"></div>
+    </section>
+
+    <section class="panel" id="p4">
+      <h2><span class="num">4</span>On-time Delivery <small>consolidado / proveedor · target 95%</small></h2>
+      <div class="cuerpo" id="c4"></div>
+    </section>
+
+    <section class="panel" id="p5">
+      <h2><span class="num">5</span>COPQ · Containment <small>kEUR · Pillar 1</small></h2>
+      <div class="cuerpo" id="c5"></div>
+    </section>
+
+    <section class="panel" id="p6">
+      <h2><span class="num">6</span>Chargeback Recovery <small>charged vs. recovery · Pillar 2</small></h2>
+      <div class="cuerpo" id="c6"></div>
+    </section>
+
+    <section class="panel" id="p7">
+      <h2><span class="num">7</span>Supplier PPAP Requalification <small>status share · % on time</small></h2>
+      <div class="cuerpo" id="c7"></div>
+    </section>
+
+    <section class="panel" id="p8">
+      <h2><span class="num">8</span>Supplier Project Readiness <small>APQP milestones · Pillar 4</small></h2>
+      <div class="cuerpo" id="c8"></div>
+    </section>
+
+    <section class="panel" id="p9">
+      <h2><span class="num">9</span>Supplier Audits Status <small>últimos 12 meses · completitud</small></h2>
+      <div class="cuerpo" id="c9"></div>
+    </section>
+
+  </main>
+
+  <footer class="pie">
+    <div class="targets" id="targets"></div>
+    <p class="nota" id="nota-panel9"></p>
+  </footer>
+    </div>
+  </div>
+
+  <div class="tip" id="tip" hidden></div>
+
+  <div class="modal" id="modal" hidden>
+    <div class="modal-fondo" data-accion="cerrar-modal"></div>
+    <div class="modal-caja" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+      <header class="modal-cab">
+        <div>
+          <h2 id="modal-titulo"></h2>
+          <p id="modal-sub"></p>
+        </div>
+        <div class="modal-acciones">
+          <button type="button" class="panel-flotante-btn modal-volver" id="modal-volver" data-accion="volver-modal" title="Volver" aria-label="Volver" hidden>&#8592; Volver</button>
+          <button type="button" class="panel-flotante-btn" id="modal-excel" data-accion="exportar-panel" title="Descargar este panel en Excel">&#10515; Excel</button>
+          <button type="button" class="modal-cerrar" id="modal-cerrar" data-accion="cerrar-modal" aria-label="Cerrar detalle">&#10005;</button>
+        </div>
+      </header>
+      <div class="modal-cuerpo" id="modal-cuerpo"></div>
+    </div>
+  </div>
+
+  <div class="panel-flotante" id="panel-flotante" hidden>
+    <div class="panel-flotante-fondo" data-accion="cerrar-flotante"></div>
+    <div class="panel-flotante-caja" role="dialog" aria-modal="true" aria-labelledby="panel-flotante-titulo">
+      <header class="panel-flotante-cab">
+        <h2 id="panel-flotante-titulo"></h2>
+        <div class="panel-flotante-acciones">
+          <button type="button" class="panel-flotante-btn" id="panel-flotante-excel" data-accion="exportar-panel" title="Descargar los datos de este panel en Excel">&#10515; Excel</button>
+          <button type="button" class="panel-flotante-btn" id="panel-flotante-detalle" data-accion="panel-desde-flotante" title="Ver detalle completo">⤢ Detalle</button>
+          <button type="button" class="modal-cerrar" data-accion="cerrar-flotante" aria-label="Cerrar ventana flotante">&#10005;</button>
+        </div>
+      </header>
+      <div class="panel-flotante-cuerpo" id="panel-flotante-cuerpo"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Ayuda · Supplier Quality Dashboard</title>
+  <link rel="icon" type="image/svg+xml" href="assets/stoneridge-mark.svg">
+  <link rel="alternate icon" type="image/png" href="assets/stoneridge-logo-trim.png">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body.ayuda { overflow: auto; display: block; height: auto; min-height: 100%; }
+    .ayuda-wrap { max-width: 1100px; margin: 0 auto; padding: 16px 18px 32px; }
+    .ayuda-hero { background: #fff; border: 1px solid var(--panel-borde); border-top: 3px solid var(--acento); border-radius: 10px; padding: 16px 18px; margin-bottom: 14px; box-shadow: var(--sombra); }
+    .ayuda-hero h1 { margin: 0 0 6px; font-size: 22px; }
+    .ayuda-hero p { margin: 0 0 8px; color: var(--texto-suave); font-size: 13px; line-height: 1.55; }
+    .ayuda-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    @media (max-width: 900px) { .ayuda-grid { grid-template-columns: 1fr; } }
+    .ayuda-card { background: #fff; border: 1px solid var(--panel-borde); border-radius: 10px; padding: 14px 16px; box-shadow: var(--sombra); }
+    .ayuda-card h2 { margin: 0 0 6px; font-size: 15px; display: flex; align-items: center; gap: 8px; }
+    .ayuda-card p, .ayuda-card li { font-size: 12.5px; color: #333; line-height: 1.55; }
+    .ayuda-card ul { margin: 4px 0 0 18px; padding: 0; }
+    .ayuda-seccion { margin-top: 18px; }
+    .ayuda-seccion > h2 { margin: 0 0 8px; font-size: 17px; }
+    .ayuda-tabla { width: 100%; border-collapse: collapse; font-size: 12.5px; background: #fff; border: 1px solid var(--panel-borde); border-radius: 10px; overflow: hidden; }
+    .ayuda-tabla th, .ayuda-tabla td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #ececec; vertical-align: top; }
+    .ayuda-tabla th { font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--texto-tenue); background: #f7f7f8; }
+    .tag { display: inline-block; font-size: 10px; font-weight: 700; padding: 1px 7px; border-radius: 999px; background: #fdf2f4; color: var(--acento); border: 1px solid #eebfc6; }
+    .volver { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: #fff; background: var(--acento); padding: 7px 12px; border-radius: 7px; font-weight: 700; font-size: 12px; }
+    .nota-ayuda { margin-top: 10px; padding: 10px 12px; background: #f7f7f8; border-left: 3px solid var(--acento); border-radius: 0 6px 6px 0; font-size: 12.5px; color: #444; }
+  </style>
+</head>
+<body class="ayuda">
+  <header class="topbar">
+    <a class="marca" href="/" title="Volver al dashboard">
+      <img class="logo-img" src="assets/stoneridge-logo.svg" alt="Stoneridge" width="50" height="22">
+      <div class="titulo"><h1>Ayuda · Supplier Quality Dashboard</h1><p>Funcionalidades y mediciones de los 9 paneles KPI</p></div>
+    </a>
+    <div class="acciones"><a class="volver" href="/">← Volver al dashboard</a></div>
+  </header>
+  <div class="ayuda-wrap">
+    <section class="ayuda-hero">
+      <h1>Cómo usar el dashboard</h1>
+      <p>El <strong>Supplier Quality Dashboard</strong> presenta el concepto <em>Nine-Panel KPI</em> para monitorear la calidad de proveedores en una sola pantalla.</p>
+      <p><span class="tag">Datos demo</span> Los datos se cargan al iniciar desde el servidor (<code>/api/datos</code>), sin botón de actualización manual.</p>
+      <div class="nota-ayuda"><strong>Interacción:</strong> tooltip al pasar/enfocar, clic o Enter/Espacio para detalle, y <strong>⤢ Detalle</strong> para vista completa. Todos los detalles incluyen <strong>← Volver</strong> para regresar al reporte anterior/general.</div>
+    </section>
+    <section class="ayuda-seccion">
+      <h2>Controles y funcionalidades</h2>
+      <table class="ayuda-tabla">
+        <thead><tr><th>Control</th><th>Función</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Sidebar</strong></td><td>Menú colapsado con Rango, interacción, lista de paneles y <strong>Ayuda y mediciones</strong> al final (sin Acciones ni actualizar datos).</td></tr>
+          <tr><td><strong>Rango 6M / 12M / Quarter</strong></td><td>Series en flujo enero → diciembre; Quarter segmenta 12 meses en Q1–Q4.</td></tr>
+          <tr><td><strong>Volver (←)</strong></td><td>Regresa al reporte anterior/general en todos los detalles (paneles 2,4,5,6,7,8,9 y demás).</td></tr>
+          <tr><td><strong>Descarga .xlsx (⤓)</strong></td><td>Genera un Excel por panel (<strong>.xlsx</strong>, propio, ZIP+SpreadsheetML, sin dependencias) con metadatos, encabezados, totales/porcentajes y autofiltro, respetando rango 6M/12M/Quarter, filtros (EU/NA), vista de scorecard y proveedor OTD seleccionado, incluyendo listas/comparativas cuando aplica.</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section class="ayuda-seccion">
+      <h2>Notas por panel</h2>
+      <div class="ayuda-grid">
+        <article class="ayuda-card"><h2><span class="num">2</span> Claims</h2><p>Drill-down por claims/mes/nivel con <strong>Volver</strong> al reporte general/mensual.</p></article>
+        <article class="ayuda-card"><h2><span class="num">4</span> OTD</h2><p>Target sin interferir, meses legibles (sin duplicados), zoom/detalle con <strong>Volver</strong>.</p></article>
+        <article class="ayuda-card"><h2><span class="num">5</span> COPQ</h2><p>Detalle por mes con <strong>Volver</strong>.</p></article>
+        <article class="ayuda-card"><h2><span class="num">6</span> Chargeback</h2><p>Clic en Cobrado/Recuperado muestra listas propias de proveedores y comparativa clara; exportación .xlsx con las mismas listas/comparativas.</p></article>
+        <article class="ayuda-card"><h2><span class="num">7</span> PPAP</h2><p>Cada estado con su lista de proveedores; exportación .xlsx con resumen y proveedores por estado.</p></article>
+        <article class="ayuda-card"><h2><span class="num">8</span> Readiness</h2><p>Listas por estado/categoría (proveedor/proyecto); exportación .xlsx igual.</p></article>
+        <article class="ayuda-card"><h2><span class="num">9</span> Auditorías</h2><p>Desglose por mes (proveedores) con <strong>Volver</strong>. Exportación .xlsx incluye hojas <strong>«Resumen mensual»</strong> y <strong>«Detalle proveedores»</strong>, alineada al periodo/filtros.</p></article>
+        <article class="ayuda-card"><h2>Referencia docs</h2><p>Métricas basadas en <code>docs/captura.png</code> (validar contra la imagen).</p></article>
+      </div>
+      <p style="margin-top:14px;"><a class="volver" href="/">← Volver al dashboard</a></p>
+    </section>
+  </div>
+</body>
+</html>
